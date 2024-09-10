@@ -1,0 +1,12 @@
+.link {
+  font-size: 18px;
+}
+
+.navigation {
+  display: flex;
+  gap: 24px;
+}
+
+.active {
+  color: #249cff;
+}
