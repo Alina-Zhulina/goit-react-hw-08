@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operation";
+import { register } from "../../redux/auth/operations";
 import css from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
