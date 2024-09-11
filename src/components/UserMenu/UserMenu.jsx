@@ -6,10 +6,6 @@ import { logOut } from "../../redux/auth/operation";
 const UserMenu = () => {
   const dispatch = useDispatch();
   const { name } = useSelector(selectUser);
-  console.log("User:", name);
-  // if (!user || !user.name) {
-  //   return null;
-  // }
 
   return (
     <div className={css.wrapper}>

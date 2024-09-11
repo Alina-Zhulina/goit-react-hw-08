@@ -1,12 +1,13 @@
 import "./App.css";
 import { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsRefreshing } from "./redux/auth/selectors";
+import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/operation";
 import Layout from "./components/Layout";
 import { Route, Routes } from "react-router-dom";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { fetchContacts } from "./redux/contacts/operations";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
@@ -18,10 +19,17 @@ const RegistrationPage = lazy(() =>
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(fetchContacts());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
@@ -47,16 +55,5 @@ function App() {
     </div>
   );
 }
-//     <div>
-//       <h1>Phonebook</h1>
-//       <ContactForm />
-//       <SearchBox />
-//       <ContactList />
-//       <RegistrationPage />
-//       <LoginPage />
-//       <HomePage />
-//     </div>
-//   );
-// }
 
 export default App;

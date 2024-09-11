@@ -3,7 +3,8 @@ const HomePage = () => {
   return (
     <>
       <div className={css.container}>
-        <h1 className={css.title}>Phone Book</h1>
+        <h1 className={css.title}>My PhoneBook</h1>
+        <p className={css.subtitle}>Manage your contacts easily</p>
       </div>
     </>
   );
